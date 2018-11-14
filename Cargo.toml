@@ -1,0 +1,15 @@
+[package]
+name = "audio_output_control"
+version = "0.1.0"
+authors = ["Devon Herlitz <devonherlitz@gmail.com>"]
+
+[dependencies]
+gdk-pixbuf = "^0"
+gdk = "^0"
+gio = "^0"
+glib = "^0"
+regex = "1"
+[dependencies.gtk]
+version = "0.5.0"
+features = ["v3_10"]
+
