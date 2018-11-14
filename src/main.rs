@@ -9,8 +9,6 @@ use gdk_pixbuf::Pixbuf;
 use gtk::prelude::*;
 use gtk::{Menu, MenuItem, Orientation, Scale, StatusIcon, Window, WindowType};
 
-
-
 mod pulse;
 
 const MAX: f64 = 65536.0;
@@ -36,11 +34,11 @@ fn main() {
 
     build_menu(&menu);
 
-    volume_window.connect_focus_out_event(|window, e| {
+    volume_window.connect_focus_out_event(|window, _e| {
         window.hide();
         Inhibit(false)
     });
-    icon.connect_popup_menu(move |icon, btn, time| {
+    icon.connect_popup_menu(move |_icon, btn, time| {
         menu.show_all();
         menu.popup_easy(btn, time);
     });
@@ -49,7 +47,7 @@ fn main() {
             Some((_screen, rect, _orient)) => volume_window.move_(rect.x, rect.y),
             None => (),
         }
-        let (idx, vol) = pulse::get_volume();
+        let (_idx, vol) = pulse::get_volume();
         volume_control.set_value(vol.parse::<f64>().unwrap() / MAX * 100.0);
         volume_control.connect_value_changed(volume_changed);
         volume_window.show_all();

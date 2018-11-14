@@ -18,7 +18,7 @@ pub fn get_volume() -> (String, String) {
   (caps[1].to_string(), caps[2].to_string())
 }
 
-pub fn get_sinks<'a>() -> Vec<Device> {
+pub fn get_sinks() -> Vec<Device> {
   let resp = exec(
     r#"pacmd list-sinks | grep -e 'device.description' -e 'index' |
                        tr -d " \t" | sed -r "s/device.description=+/ name:/g" |
